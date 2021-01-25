@@ -27,7 +27,7 @@ def new_rand():
     return jsonify(
         status = "OK",
         origin = source.last_call,
-        result = source.get_seed()
+        result = int(hashlib.sha3_224(str(source.get_seed()).encode('utf-8')).hexdigest(), 16)
     )
 
 # serve

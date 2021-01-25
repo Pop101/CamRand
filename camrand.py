@@ -33,7 +33,7 @@ class RandomImageSource:
             for y in range(img.height):
                 rand += algorith(px[x, y])
         
-        rand_int = int(rand, 2) #- self.last_random
+        rand_int = int(rand, 2) - self.last_random
         self.last_random = int(rand, 2)
         return rand_int if rand_int > 0 else -rand_int
 
@@ -43,5 +43,9 @@ class RandomImageSource:
     
 if __name__ == '__main__':
     source = RandomImageSource()
-    print(source.get_seed())
+    seed = source.get_seed()
+    print(seed)
     print(float(source.get_random()))
+
+    import hashlib
+    print(int(hashlib.sha3_224(str(seed).encode('utf-8')).hexdigest(), 16))
