@@ -27,7 +27,7 @@ def new_rand():
     return jsonify(
         status = "OK",
         origin = source.last_call,
-        result = source.get_random()
+        result = source.get_seed()
     )
 
 # serve
