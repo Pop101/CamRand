@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <meta property="og:image" content="">
+    <meta name="description" content="Generate secure random numbers using the webcam!">
+    <meta name="twitter:title" content="CamRand">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="Generate secure random numbers using the webcam!">
+    <link rel="icon" type="image/png" sizes="128x128" href="static/assets/img/camrandom.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="static/assets/img/camrandom.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="static/assets/img/camrandom.png">
+    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/assets/css/styles.min.css">
+</head>
+
+<body id="page-top">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">Random</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="https://leibmann.org">Site</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead bg-primary text-white text-center" style="padding: 150px 0px 35px;">
+        <div class="container">
+            <h1>Numbers on Demand</h1>
+            <h2 class="font-weight-light mb-0">Generate Secure Random Numbers from the Webcam</h2>
+        </div>
+    </header>
+    <section id="generate" class="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 ml-auto">
+                    <p id="random-result">Your Result:<br><code>Nothing Generated Yet!</code></p>
+                </div>
+                <div class="col-lg-4 mr-auto">
+                    <div class="slidecontainer"><input type="range" id="random-range" class="slider" min="2" max="101" value="50">
+                        <p id="random-range-indicator">Between 1 and 50</p>
+                    </div><button class="btn btn-outline-danger btn-block btn-lg" id="random-go" type="button" style="margin: 1%;">Generate!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="bg-primary text-white mb-0">
+        <div class="container">
+            <h2 class="text-uppercase text-center text-white">About</h2>
+            <div class="row">
+                <div class="col-lg-4 ml-auto">
+                    <p class="lead">Randomness is the core of many cryptographic practices today, so having a viable source for it is extremely important.<br><br></p>
+                </div>
+                <div class="col-lg-4 mr-auto">
+                    <p class="lead">This service uses a webcam, which sees the near-random nature of rustling trees, and uses that to form these random numbers.<br>&nbsp;<br>In the backend, it queries&nbsp;<code>/random</code>, fetching the seed used to calculate random numbers</p>
+                </div>
+            </div>
+            <div class="text-center mt-4"><a class="btn btn-outline-light btn-xl" role="button" href="https://github.com/Pop101"><i class="fa fa-github mr-2"></i><span>Github Repository</span></a></div>
+        </div>
+    </section>
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>©&nbsp;Leon Leibmann 2021</small></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="static/assets/js/script.min.js"></script>
+</body>
+
+</html>

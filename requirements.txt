@@ -1,0 +1,6 @@
+Pillow
+APScheduler
+flask
+waitress
+decimal
+Flask-Limiter
