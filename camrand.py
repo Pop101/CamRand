@@ -22,10 +22,10 @@ class RandomImageSource:
     def get_seed(self, algorith=None):
         if algorith == None: algorith = self.gray_algo
 
-        captureImage = subprocess.Popen(["fswebcam", "-r", "356x292", "-d", "/dev/video0", "static.png", "--skip", "2"])
+        captureImage = subprocess.Popen(["fswebcam", "-r", "356x292", "-d", "/dev/video0", "static.jpg", "--skip", "2"])
         captureImage.communicate()
 
-        img = Image.open("static.png")
+        img = Image.open("./static.jpg")
         px = img.load()
 
         rand = ""
@@ -33,7 +33,7 @@ class RandomImageSource:
             for y in range(img.height):
                 rand += algorith(px[x, y])
         
-        rand_int = int(rand, 2) - self.last_random
+        rand_int = int(rand, 2) #- self.last_random
         self.last_random = int(rand, 2)
         return rand_int if rand_int > 0 else -rand_int
 
@@ -41,7 +41,7 @@ class RandomImageSource:
         seed = self.get_seed()
         return Decimal(seed) / Decimal(int("1" * len(str(bin(seed))) ,2))
     
-if __name__ == 'main':
+if __name__ == '__main__':
     source = RandomImageSource()
     print(source.get_seed())
     print(float(source.get_random()))
