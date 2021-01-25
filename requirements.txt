@@ -1,5 +1,4 @@
 Pillow
-APScheduler
 flask
 waitress
 decimal

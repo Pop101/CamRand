@@ -22,7 +22,7 @@ class RandomImageSource:
     def get_seed(self, algorith=None):
         if algorith == None: algorith = self.gray_algo
 
-        #subprocess.run(["fswebcam", "-r", "356x292", "-d", "/dev/video0", "static.jpg", "--skip", "2"])
+        subprocess.run(["fswebcam", "-r", "356x292", "-d", "/dev/video0", "static.jpg", "--skip", "2"])
         img = Image.open("static.jpg")
         px = img.load()
 
