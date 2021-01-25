@@ -1,4 +1,4 @@
-import time
+import time, hashlib
 from flask import Flask, jsonify, render_template
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
