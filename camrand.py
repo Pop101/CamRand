@@ -25,7 +25,7 @@ class RandomImageSource:
         captureImage = subprocess.Popen(["fswebcam", "-r", "356x292", "-d", "/dev/video0", "static.png", "--skip", "2"])
         captureImage.communicate()
 
-        img = Image.open("static.jpg")
+        img = Image.open("static.png")
         px = img.load()
 
         rand = ""
@@ -42,4 +42,6 @@ class RandomImageSource:
         return Decimal(seed) / Decimal(int("1" * len(str(bin(seed))) ,2))
     
 if __name__ == 'main':
-    print(RandomImageSource().get_random())
+    source = RandomImageSource()
+    print(source.get_seed())
+    print(float(source.get_random()))
