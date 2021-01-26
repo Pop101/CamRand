@@ -1,7 +1,7 @@
 language: python
 
 install:
- - /tests/requirements.txt
+ - python3 -m pip install -r tests/requirements.txt
 
 script:
   - python3 /tests/travis.py
