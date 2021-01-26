@@ -5,6 +5,8 @@ from flask_limiter.util import get_remote_address
 
 from waitress import serve
 from camrand import RandomImageSource
+import pyximport; pyximport.install()
+
 
 app = Flask(__name__)
 limiter = Limiter(
