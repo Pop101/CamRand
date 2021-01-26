@@ -1,4 +1,4 @@
-import time, hashlib
+import time
 from flask import Flask, jsonify, render_template
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -27,7 +27,7 @@ def new_rand():
     return jsonify(
         status = "OK",
         origin = source.last_call,
-        result = int(hashlib.sha3_224(str(source.get_seed()).encode('utf-8')).hexdigest(), 16)
+        result = source.get_seed()
     )
 
 # serve
