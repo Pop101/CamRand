@@ -13,7 +13,8 @@ install requirements
 ```sudo python3 -m pip install -r requirements```
 run the app
 ```sudo python3 webapp.py```
-And that's it! you can access it at ```your-ip-here:1000```
+And that's it! you can access it at
+```your-ip-here:1000```
 
 Any issues installing should go in issues.
 
