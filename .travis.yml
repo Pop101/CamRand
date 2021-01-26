@@ -4,4 +4,4 @@ install:
  - python3 -m pip install -r tests/requirements.txt
 
 script:
-  - python3 /tests/travis.py
+  - python3 tests/travis.py
