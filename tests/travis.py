@@ -8,8 +8,8 @@ the_data = dict()
 url = "https://rand.tennisbowling.com/random"
 load = requests.get (url).json()
 if load['status'] != 'OK':
-     print("api is working as intended")
- else:
-     sys.exit("Api did not return 200 ok. please check api.")
+    print("api is working as intended")
+else:
+    sys.exit("Api did not return 200 ok. please check api.")
 
 
