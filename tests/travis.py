@@ -1,9 +1,15 @@
 import requests
+import json
 import sys
 
-response = requests.get(f"https://rand.tennisbowling.com/random")
-print(response)
-if response == "<Response [200}>":
-    exit(0)
-else:
-    sys.exit("Api response is not 200! Please check the api.")
+the_data = dict()
+
+### return 0 if problem, else return the json payload
+url = "https://rand.tennisbowling.com/random"
+load = requests.get (url).json()
+if load['status'] != 'OK':
+     print("api is working as intended")
+ else:
+     sys.exit("Api did not return 200 ok. please check api.")
+
+
