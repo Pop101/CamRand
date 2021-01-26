@@ -40,7 +40,7 @@ class RandomImageSource:
 
     def get_random(self):
         seed = self.get_seed()
-        return Decimal(seed) / Decimal(int("1" * len(str(bin(seed))) ,2))
+        return Decimal(seed) / Decimal(int("1" * (len(str(bin(seed))) - 1) ,2))
     
 if __name__ == '__main__':
     source = RandomImageSource()
