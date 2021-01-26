@@ -2,6 +2,7 @@ import os, hashlib
 from PIL import Image
 from decimal import Decimal
 import subprocess
+import pyximport; pyximport.install()
 
 class RandomImageSource:
     def __init__(self):
