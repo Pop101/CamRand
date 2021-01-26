@@ -22,7 +22,7 @@ class RandomImageSource:
     def get_seed(self, algorith=None):
         if algorith == None: algorith = self.gray_algo
 
-        captureImage = subprocess.Popen(["fswebcam", "static.jpg", "--banner-color","#FF000000", "--line-color","#FF000000","--timestamp","%F %T %S"])
+        captureImage = subprocess.Popen(['fswebcam',  '--banner-colour', 'FF000000', '--line-colour','FF000000','--timestamp','"%F %T %S"', 'static.jpg'])
         captureImage.communicate()
 
         img = Image.open("./static.jpg")
