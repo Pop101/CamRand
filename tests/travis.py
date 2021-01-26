@@ -1,5 +1,5 @@
 import requests
-import os
+import sys
 
 response = requests.get(f"https://rand.tennisbowling.com/random")
 print(response)
