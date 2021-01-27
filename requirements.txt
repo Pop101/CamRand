@@ -1,6 +1,4 @@
 Pillow
 flask
 waitress
-decimal
-Flask-Limiter
 Cython

@@ -1,19 +1,11 @@
 import time
 from flask import Flask, jsonify, render_template
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
-
 from waitress import serve
 from camrand import RandomImageSource
 import pyximport; pyximport.install()
 
 
 app = Flask(__name__)
-limiter = Limiter(
-    app,
-    key_func=get_remote_address,
-    default_limits=["5 per second"]
-)
 
 source = RandomImageSource()
 source.last_call = time.time()
