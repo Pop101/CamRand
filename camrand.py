@@ -4,6 +4,9 @@ from decimal import Decimal
 import subprocess
 import pyximport; pyximport.install()
 
+def hash_to_int(obj):
+    return int(hashlib.sha512(repr(obj).encode('utf-8')).hexdigest(), 16)
+
 class RandomImageSource:
     def __init__(self):
         self.last_random = 0
@@ -34,10 +37,10 @@ class RandomImageSource:
             for y in range(img.height):
                 rand += algorith(px[x, y])
         
-        rand = int(hashlib.sha512(rand.encode('utf-8')).hexdigest(), 16)
+        rand = hash_to_int(rand)
         rand_int = rand - self.last_random
         self.last_random = rand
-        return rand_int if rand_int > 0 else -rand_int
+        return hash_to_int(rand_int if rand_int > 0 else -rand_int)
 
     def get_random(self):
         seed = self.get_seed()
