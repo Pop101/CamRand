@@ -1,7 +1,10 @@
 import time
 from flask import Flask, jsonify, render_template
 from waitress import serve
+
+from camrand import hash_to_int
 from camrand import RandomImageSource
+
 import pyximport; pyximport.install()
 
 
@@ -15,8 +18,17 @@ source.last_call = time.time()
 def home():
     return render_template('index.html') 
 
-@app.route('/random')
-def new_rand():
+@app.route('/seedrandom')
+def seed_rand():
+    source.last_call = time.time()
+    return jsonify(
+        status = "OK",
+        origin = source.last_call,
+        result = hash_to_int(source.get_seed())
+    )
+
+@app.route('/truerandom')
+def raw_rand():
     source.last_call = time.time()
     return jsonify(
         status = "OK",

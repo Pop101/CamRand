@@ -23,7 +23,7 @@ class RandomImageSource:
         gray = sum(pxs) / len(pxs)
         return "1" if gray > 127.5 else "0"
     
-    def get_seed(self, algorith=None):
+    def get_raw_int(self, algorith=None):
         if algorith == None: algorith = self.gray_algo
 
         captureImage = subprocess.Popen(['fswebcam',  '--no-banner', 'static.jpg'])
@@ -37,10 +37,12 @@ class RandomImageSource:
             for y in range(img.height):
                 rand += algorith(px[x, y])
         
-        rand = hash_to_int(rand)
-        rand_int = rand - self.last_random
         self.last_random = rand
-        return hash_to_int(rand_int if rand_int > 0 else -rand_int)
+        return rand
+    
+    def get_seed(self):
+        rand_int = self.last_random - self.get_raw_int(algorith=self.gray_algo)
+        return rand_int if rand_int > 0 else -rand_int
 
     def get_random(self):
         seed = self.get_seed()
