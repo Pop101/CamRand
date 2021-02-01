@@ -37,8 +37,9 @@ class RandomImageSource:
             for y in range(img.height):
                 rand += algorith(px[x, y])
         
-        self.last_random = int(rand, 2)
-        return int(rand, 2)
+        rand = int(rand, 2)
+        self.last_random = rand
+        return rand
     
     def get_seed(self):
         rand_int = self.last_random - self.get_raw_int(algorith=self.gray_algo)
