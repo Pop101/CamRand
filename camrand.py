@@ -7,17 +7,25 @@ import pyximport; pyximport.install()
 def hash_to_int(obj):
     return int(hashlib.sha512(repr(obj).encode('utf-8')).hexdigest(), 16)
 
+def numberToBase(n:int, b:int = -1, key:str or list = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/"):
+    if(b == -1): b = len(key)
+    digits = ""
+    while n:
+        digits += key[int(n % b)]
+        n //= b
+    return digits
+
 class RandomImageSource:
     def __init__(self):
         self.last_random = 0
         self.last_random = self.get_seed()
     
     def color_algo(self, pxs:tuple):
-        return ''.join(map(lambda x: str(bin(x)).replace('b',''), pxs))
+        return ''.join(map(lambda x: str(bin(x))[2:], pxs))
 
     def gray_algo(self, pxs:tuple):
         gray = int(sum(pxs) / len(pxs))
-        return str(bin(gray)).replace('b','')
+        return str(bin(gray))[2:]
     
     def bw_algo(self, pxs:tuple):
         gray = sum(pxs) / len(pxs)
@@ -47,7 +55,7 @@ class RandomImageSource:
 
     def get_random(self):
         seed = self.get_seed()
-        return Decimal(seed) / Decimal(int("1" * (len(str(bin(seed))) - 1) ,2))
+        return Decimal(seed) / Decimal(int("1" * (len(str(bin(seed))) - 1), 2))
     
 if __name__ == '__main__':
     source = RandomImageSource()
