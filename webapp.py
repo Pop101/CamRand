@@ -33,7 +33,7 @@ def raw_rand():
     return jsonify(
         status = 'OK',
         origin = source.last_call,
-        result = numberToBase(source.get_seed()) # convert to base64
+        result = hex(source.get_seed())[2:]
     )
 
 # serve
