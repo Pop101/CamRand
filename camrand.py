@@ -59,6 +59,6 @@ class RandomImageSource:
     
 if __name__ == '__main__':
     source = RandomImageSource()
-    seed = source.get_seed()
+    seed = hex(source.get_seed())[2:]
     print(seed)
     print(float(source.get_random()))
