@@ -1,6 +1,7 @@
 import pyximport; pyximport.install()
 from camrand import hash_to_int, numberToBase
 from camrand import RandomImageSource
+import time
 
 source = RandomImageSource()
 source.last_call = time.time()

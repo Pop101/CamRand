@@ -34,7 +34,7 @@ class RandomImageSource:
     def get_raw_int(self, algorith=None):
         if algorith == None: algorith = self.gray_algo
 
-        captureImage = subprocess.Popen(['fswebcam',  '--no-banner', 'static.jpg'])
+        captureImage = subprocess.Popen(['fswebcam',  '--no-banner', 'static.jpg'], stdout=open(os.devnull, 'wb')) # redirect output to /dev/null for drand.py
         captureImage.communicate()
 
         img = Image.open("./static.jpg")
