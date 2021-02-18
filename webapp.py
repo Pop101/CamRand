@@ -1,4 +1,5 @@
 import time
+import subprocess
 from flask import Flask, jsonify, render_template
 from waitress import serve
 
@@ -7,10 +8,15 @@ from camrand import RandomImageSource
 
 import pyximport; pyximport.install()
 
+FPS = 10
+RESOLUTION = "440x300"
+
+# Take constant images in the background
+subprocess.Popen(['ffmpeg', '-y', '-f', 'video4linux2', '-i', '/dev/video0', '-s', str(RESOLUTION), '-vf', f'fps={FPS}', '-update', '1', 'static.jpg'])
 
 app = Flask(__name__)
 
-source = RandomImageSource()
+source = RandomImageSource(take_picture=False)
 source.last_call = time.time()
 
 # GET PUT (override, immuteable) POST (new) DELETE
@@ -18,22 +24,20 @@ source.last_call = time.time()
 def home():
     return render_template('index.html') 
 
-@app.route('/seedrandom')
-def seed_rand():
+@app.route('/random')
+def rand():    
+    last_seed, t = source.last_random, time.time()
+    
+    # ensure enough time has passed for a new frame to have arrived
+    to_wait = ( 1.08 * 1/FPS ) - (t - source.last_call) # add an 8% threshold to account for ffmpeg image processing time
+    if to_wait > 0:
+        time.sleep(to_wait)
+    
     source.last_call = time.time()
     return jsonify(
         status = 'OK',
         origin = source.last_call,
-        result = hash_to_int(source.get_seed())
-    )
-
-@app.route('/truerandom')
-def raw_rand():
-    source.last_call = time.time()
-    return jsonify(
-        status = 'OK',
-        origin = source.last_call,
-        result = hex(source.get_seed())[2:]
+        result = hash_to_int(source.get_raw_int() - last_seed)
     )
 
 # serve
