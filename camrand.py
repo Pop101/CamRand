@@ -46,9 +46,10 @@ class RandomImageSource:
         self.last_random = rand
         return rand
 
-    def get_seed(self):
+    def get_seed(self, threshold:int = 10000):
         rand_int = self.last_random - self.get_raw_int(algorith=self.gray_algo)
-        return rand_int if rand_int > 0 else -rand_int
+        if -threshold < rand_int < threshold: return self.last_random # do this to avoid returning 0
+        else: return rand_int if rand_int > 0 else -rand_int # only return positive numbers
 
     def get_random(self):
         seed = self.get_seed()
