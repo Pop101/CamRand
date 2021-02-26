@@ -44,8 +44,8 @@ def rand():
     return jsonify(
         status = 'OK',
         origin = source.last_call,
-        result = hash_to_int(source.get_raw_int() - last_seed)
-        test = test()
+        result = hash_to_int(source.get_raw_int() - last_seed),
+        testresult = test()
     )
 
 # serve
