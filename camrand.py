@@ -33,8 +33,8 @@ class RandomImageSource:
         gray = sum(pxs) / len(pxs)
         return "1" if gray > 127.5 else "0"
 
-    def get_raw_int(self, algorithm=None):
-        if algorithm == None: algorithm = self.gray_algo
+    def get_raw_int(self, algorith=None):
+        if algorith == None: algorith = self.gray_algo
 
         if self.take_picture:
             captureImage = subprocess.Popen(['ffmpeg', '-f', 'video4linux2', '-i', '/dev/video0', '-vframes' '1', 'static.jpg'])
@@ -42,14 +42,14 @@ class RandomImageSource:
 
         img = Image.open("./static.jpg").convert("RGB")
         px = np.array(img).reshape(-1,3)
-        rand =  ''.join(list(map(algorithm, px)))
+        rand =  ''.join(list(map(algorith, px)))
 
         rand = int(rand, 2)
         self.last_random = rand
         return rand
 
-    def get_seed(self, algorithm=None, threshold:int = 10000):
-        rand_int = self.last_random - self.get_raw_int(algorithm=algorithm)
+    def get_seed(self, algorith=None, threshold:int = 10000):
+        rand_int = self.last_random - self.get_raw_int(algorith=algorith)
         if -threshold < rand_int < threshold: return self.last_random # do this to avoid returning 0
         else: return rand_int if rand_int > 0 else -rand_int # only return positive numbers
 
