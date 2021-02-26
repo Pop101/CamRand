@@ -22,7 +22,7 @@ source.last_call = time.time()
 
 def test():
     number = hash_to_int(source.get_raw_int() - last_seed)
-    subprocess.call("echo "str(number)" >> testing")
+    subprocess.call('echo', str(number),  '>> testing')
     return subprocess.call("ent testing").read()
     
 
