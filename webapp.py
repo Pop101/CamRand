@@ -1,4 +1,5 @@
 import time
+import os
 import subprocess
 from flask import Flask, jsonify, render_template
 from waitress import serve
@@ -19,6 +20,12 @@ app = Flask(__name__)
 source = RandomImageSource(take_picture=False)
 source.last_call = time.time()
 
+def test():
+    number = hash_to_int(source.get_raw_int() - last_seed)
+    subprocess.call("echo "str(number)" >> testing")
+    return subprocess.call("ent testing").read()
+    
+
 # GET PUT (override, immuteable) POST (new) DELETE
 @app.route('/')
 def home():
@@ -38,6 +45,7 @@ def rand():
         status = 'OK',
         origin = source.last_call,
         result = hash_to_int(source.get_raw_int() - last_seed)
+        test = test()
     )
 
 # serve
