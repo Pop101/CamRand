@@ -17,10 +17,9 @@ def numberToBase(n:int, b:int = -1, key:str or list = "0123456789ABCDEFGHIJKLMNO
     return digits
 
 class RandomImageSource:
-    def __init__(self, take_picture=True):
-        self.take_picture = take_picture
+    def __init__(self):
         self.last_random = 0
-        if take_picture: self.last_random = self.get_seed()
+        self.last_random = self.get_seed()
 
     def color_algo(self, pxs:tuple):
         return ''.join(map(lambda x: str(bin(x))[2:], pxs))
@@ -36,9 +35,8 @@ class RandomImageSource:
     def get_raw_int(self, algorith=None):
         if algorith == None: algorith = self.gray_algo
 
-        if self.take_picture:
-            captureImage = subprocess.Popen(['ffmpeg', '-f', 'video4linux2', '-i', '/dev/video0', '-vframes' '1', 'static.jpg'])
-            captureImage.communicate()
+        captureImage = subprocess.Popen(['fswebcam',  '--no-banner', 'static.jpg'])
+        captureImage.communicate()
 
         img = Image.open("./static.jpg").convert("RGB")
         px = np.array(img).reshape(-1,3)
@@ -48,8 +46,8 @@ class RandomImageSource:
         self.last_random = rand
         return rand
 
-    def get_seed(self, algorith=None, threshold:int = 10000):
-        rand_int = self.last_random - self.get_raw_int(algorith=algorith)
+    def get_seed(self, threshold:int = 10000):
+        rand_int = self.last_random - self.get_raw_int(algorith=self.gray_algo)
         if -threshold < rand_int < threshold: return self.last_random # do this to avoid returning 0
         else: return rand_int if rand_int > 0 else -rand_int # only return positive numbers
 
@@ -58,13 +56,9 @@ class RandomImageSource:
         return Decimal(seed) / Decimal(int("1" * (len(str(bin(seed))) - 1), 2))
 
 if __name__ == '__main__':
-    subprocess.Popen('ping google.com /t > C:\\Users\\leonl\\Downloads\\Ping.txt'.split(' '), shell=True)
-    import time; time.sleep(500)
-    '''
     source = RandomImageSource()
     print(source.get_raw_int())
     
     seed = source.get_seed()
     print(seed)
     print(float(source.get_random()))
-    '''
