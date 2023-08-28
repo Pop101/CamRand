@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "camrand"
+version = "0.1.0"
+description = "A simple webapp which generates true randomness using a webcam"
+authors = ["Pop101 <leon@leibmann.org>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Pillow = "^8.0.1"
+flask = "^2.2.2"
+cython = "^0.29.21"
+waitress = "^1.4.4"
+numpy = "^1.23"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

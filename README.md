@@ -13,7 +13,7 @@ If you keep getting 0s, make sure you have FsWebcam properly installed and have 
 
 ## Technologies
 This project is created with:
-* [Flask](flask.palletsprojects.com): 1.1.2
+* [Flask](flask.palletsprojects.com): 2.2.2
 * [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/): 1.4.4
 * [Pillow](https://python-pillow.org/): 8.0.1
 * [Cython](https://cython.org): 0.29.21
@@ -26,16 +26,32 @@ This project is created with:
 [rand.tennisbowling.com](https://rand.tennisbowling.com)
 
 ## Setup
-Clone the Repo \
-```git clone https://github.com/Pop101/CamRand``` \
-Install fswebcam\
-```sudo apt update && sudo apt install fswebcam``` \
-Enter the Repo and Install requirements \
-```cd CamRand && sudo python3 -m pip install -r requirements``` \
-Run the app! \
-```sudo python3 webapp.py``` \
-That's it! you can access it at \
-```your-ip-here:1000```
+Clone the Repo
+```
+git clone https://github.com/Pop101/CamRand
+``` 
+
+Install fswebcam
+```
+sudo apt update && sudo apt install fswebcam
+``` 
+
+Enter the Repo and Install requirements
+Note: Make sure libjpeg is installed (required for [Pillow](https://python-pillow.org/))
+```
+cd CamRand
+poetry install
+``` 
+
+Run the app!
+```
+poetry run python3 webapp.py
+``` 
+
+That's it! you can access it at
+```
+127.0.0.1:1000
+```
 
 
 
