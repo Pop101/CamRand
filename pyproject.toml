@@ -6,12 +6,12 @@ authors = ["Pop101 <leon@leibmann.org>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-Pillow = "^8.0.1"
-flask = "^2.2.2"
-cython = "^0.29.21"
-waitress = "^1.4.4"
-numpy = "^1.23"
+python = ">=3.10,<4.0"
+Pillow = ">=10.0.1"
+flask = ">=2.2.2"
+cython = ">=3.0"
+waitress = ">=2.0"
+numpy = ">=1.26,<3"
 
 [build-system]
 requires = ["poetry-core"]
