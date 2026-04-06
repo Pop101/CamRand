@@ -1,9 +1,11 @@
-import os, hashlib
+import os, hashlib, shutil, logging
 from PIL import Image
 from decimal import Decimal
 import numpy as np
 import subprocess
 import pyximport; pyximport.install()
+
+logger = logging.getLogger(__name__)
 
 def hash_to_int(obj):
     return int(hashlib.sha512(repr(obj).encode('utf-8')).hexdigest(), 16)
@@ -19,6 +21,10 @@ def numberToBase(n:int, b:int = -1, key:str or list = "0123456789ABCDEFGHIJKLMNO
 class RandomImageSource:
     def __init__(self):
         self.last_random = 0
+        if not shutil.which('fswebcam'):
+            logger.warning("fswebcam not found — using fallback random seed")
+            self.last_random = int.from_bytes(os.urandom(64), 'big')
+            return
         self.last_random = self.get_seed()
 
     def color_algo(self, pxs:tuple):
@@ -34,6 +40,10 @@ class RandomImageSource:
 
     def get_raw_int(self, algorith=None):
         if algorith == None: algorith = self.gray_algo
+
+        if not shutil.which('fswebcam'):
+            self.last_random = int.from_bytes(os.urandom(64), 'big')
+            return self.last_random
 
         captureImage = subprocess.Popen(['fswebcam',  '--no-banner', 'static.jpg'])
         captureImage.communicate()
